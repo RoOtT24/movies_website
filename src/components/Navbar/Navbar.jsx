@@ -5,7 +5,7 @@ import './Navbar.css'
 export default function Navbar() {
   return (
     <nav className="navbar navbar-expand-lg navbar-light">
-    <Link className="navbar-brand" to="/">Navbar</Link>
+    <Link className="navbar-brand" to="/"><img src='/assets\img/logo.jpg'/></Link>
     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span className="navbar-toggler-icon" />
     </button>
