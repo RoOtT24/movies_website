@@ -1,9 +1,10 @@
 img {
-    width: 8rem;
-    height: 8rem;  
+    width: 5rem;
+    height: 5rem;  
 }
+
 form {
-    height: 88vh !important;
+    height: 80vh !important;
 }
 form div input {
     background-color: #aeccc6 !important;

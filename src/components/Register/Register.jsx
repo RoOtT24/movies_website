@@ -97,7 +97,7 @@ export const Register = () => {
 ///////////////////////////////////////
 
   return (
-    <form onSubmit={onSubmit} className="container text-center mt-5">
+    <form onSubmit={onSubmit} className="container text-center mt-5 w-50">
       
       <div className="card p-5 bg-secondary">
       <div className="d-flex justify-content-center mb-3">
