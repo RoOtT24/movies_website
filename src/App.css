@@ -1,17 +1,14 @@
 body {
-  background-color: darkslategrey;
+  background-image: linear-gradient(hsl(180, 25%, 60%),hsl(180, 24%, 25%)) !important;
 }
 
-.bg-custom {
-  background-color: darkslategrey !important;
-}
 
 .nav-link {
   color: #fff !important;
 }
 
 .btn-default-outline {
-  color: #0da39c !important;
+  color: darkslategrey !important;
   background-color: transparent;
   border-color: darkslategrey;
   width: 200px;
@@ -20,7 +17,6 @@ body {
 
 .btn-default-outline:hover {
   color: #fff !important;
-  background-color: darkslategrey;
   box-shadow: none;
 }
 

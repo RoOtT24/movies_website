@@ -3,7 +3,7 @@ import Joi from 'joi'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import './Register.module.css'
+import styles from './Register.module.css'
 
 export const Register = () => {
   const navigate = useNavigate()
@@ -35,6 +35,9 @@ export const Register = () => {
     }
     else{
       // handle errors
+      toast.error('There is an error in your data!, try again');
+      // const value = data.err[0][0].message ;
+      // setErrors({...errors , [data.err[0][0].path[0]]:value});
     }
   }
 ///////////////////////////////////////
@@ -94,10 +97,15 @@ export const Register = () => {
 ///////////////////////////////////////
 
   return (
-    <form onSubmit={onSubmit} className="container">
-
-      <div className="form-group">
-        <label htmlFor="name">User Name</label>
+    <form onSubmit={onSubmit} className="container text-center mt-5">
+      
+      <div className="card p-5 bg-secondary">
+      <div className="d-flex justify-content-center mb-3">
+        <img src="/assets/img/login.png" alt="account pic" />
+        </div>
+      
+      <div className="form-group my-3">
+        
         <input
           type="text"
           className="form-control"
@@ -107,8 +115,7 @@ export const Register = () => {
           onChange={onChange}
         />
         </div>
-      <div className="form-group">
-        <label htmlFor="email">Email address</label>
+      <div className="form-group my-3">
         <input
           type="email"
           className="form-control"
@@ -119,8 +126,7 @@ export const Register = () => {
         />
 
       </div>
-      <div className="form-group">
-        <label htmlFor="password">Password</label>
+      <div className="form-group my-3">
         <input
           type="password"
           className="form-control"
@@ -131,8 +137,7 @@ export const Register = () => {
         />
       </div>
       
-      <div className="form-group">
-        <label htmlFor="cPassword">Confirm Password</label>
+      <div className="form-group my-3">
         <input
           type="password"
           className="form-control"
@@ -143,9 +148,10 @@ export const Register = () => {
         />
       </div>
 
-
-      <input type="submit" className={Object.keys(errors).length>0? "btn btn-primary disabled" : "btn btn-primary"} />
-     
+    <div>
+      <input type="submit" id={styles.btn} className={Object.keys(errors).length>0? "btn btn-primary disabled w-25 mt-3" : "btn btn-primary mt-3 w-25" } />
+      </div>
+      </div>
     </form>
   );
 }

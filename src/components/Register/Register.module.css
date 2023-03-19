@@ -1,6 +1,24 @@
+img {
+    width: 8rem;
+    height: 8rem;  
+}
 form {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;    
+    height: 88vh !important;
+}
+form div input {
+    background-color: #aeccc6 !important;
+    
+    font-size: 1.5rem !important;
+    font-weight: 900;
+}
+
+#btn {
+    background-color: #25745c !important;
+    border-color: #25745c !important;
+    color: #fffdef !important;
+}
+
+#btn:hover {
+    background-color: #fffdef !important;
+    color: #25745c !important;
 }
