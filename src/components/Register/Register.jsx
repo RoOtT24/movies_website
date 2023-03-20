@@ -56,7 +56,7 @@ export const Register = () => {
           .required(),
   
       password: Joi.string()
-          .pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')).required(),
+          .min(3).required(),
   
       cpassword: Joi.any().valid(inputs.password).required().messages({
         "any.only":"Does not match password"

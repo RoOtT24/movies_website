@@ -34,7 +34,6 @@ function App() {
           : <>
           <Navbar/>
           <Routes>
-           
             <Route path="/register" element={<Register/>}></Route>
             <Route path="/home" element={<Home trending={trending}/>}></Route>
             <Route path="/" element={<Home trending={trending}/>}></Route>
