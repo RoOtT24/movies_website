@@ -101,7 +101,7 @@ export const Register = () => {
       
       <div className="card p-5 bg-secondary">
       <div className="d-flex justify-content-center mb-3">
-        <img src="/assets/img/login.png" alt="account pic" />
+        <img className={styles.imgReg} src="/assets/img/login.png" alt="account pic" />
         </div>
       
       <div className="form-group my-3">

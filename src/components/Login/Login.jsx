@@ -1,17 +1,58 @@
-import React from 'react'
+import Joi from 'joi';
+import React, { useState } from 'react'
 
 export const Login = () => {
+
+  let [user,setUser]=useState({
+
+    email:'',
+    password:''
+
+  });
+
+  let [error,setError]=useState({
+
+      email:'',
+      password:''
+
+    });
+
+const onChange=(e)=>{
+
+  // let value=e.target.value;
+  // let myUser=user;
+  // myUser['email']=value;
+  // setUser(myUser);
+  // console.log(user);
+
+  
+  const {id,value}=e.target;
+setUser({...user,[id]:value});
+console.log(user);
+
+const schema = Joi.object({
+
+  email: Joi.string().email({ minDomainSegments: 2, tlds: { allow: ['com', 'edu'] } }),
+
+  password: Joi.string().pattern(new RegExp('^[a-zA-Z0-9]{3,30}$'))
+
+})
+
+
+} 
+
+
   return (
     <div className="card container">
   <form className='d-flex flex-column'>
   <div className="form-group">
-    <label htmlFor="exampleInputEmail1">Email address</label>
-    <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
+   
+    <input onChange={onChange} type="email" className="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" />
   
   </div>
   <div className="form-group">
-    <label htmlFor="exampleInputPassword1">Password</label>
-    <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" />
+  
+    <input onChange={onChange} type="password" className="form-control" id="password" placeholder="Password" />
   </div>
   
   <button type="submit" className="btn btn-primary w-25 ">Submit</button>
