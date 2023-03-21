@@ -7,7 +7,7 @@ export const Home = ({trending}) => {
    
 
  { trending?.map( (movie,index)=> 
-   <Card key={index} description={movie.overview} media_type={movie.media_type} title={movie.title} rating={movie.vote_average} img1={movie.poster_path} img2={movie.backdrop_path} /> 
+   <Card key={index} description={movie.overview} media_type={movie.media_type} title={movie.title} rating={movie.vote_average} img1={movie.poster_path} img2={movie.backdrop_path} id={movie.id} /> 
    )}
     </div>
   )
