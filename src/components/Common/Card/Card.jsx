@@ -1,15 +1,18 @@
 // import axios from 'axios'
 // import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import styles from './Card.module.css'
 
 export const Card = ({description, title, rating, media_type, img1, img2, id}) => {
 const navigate = useNavigate()
+const [media,setMedia] = useState()
     const onClick = async (e) => {
       
         const {data} = await axios.get(`https://api.themoviedb.org/3/${media_type}/${id}?api_key=d0cbf774321eda288e9defb5ec796daf&language=en-US`)
         const videos = await axios.get(`https://api.themoviedb.org/3/${media_type}/${id}/videos?api_key=d0cbf774321eda288e9defb5ec796daf&language=en-US`)
+        setMedia(data)
         localStorage.setItem('id',id);
         localStorage.setItem('media_type',media_type);
         localStorage.setItem('img1',`https://image.tmdb.org/t/p/w1280/${img1}`);
