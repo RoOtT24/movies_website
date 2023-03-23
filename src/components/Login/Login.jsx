@@ -1,5 +1,7 @@
-import Joi from "joi";
+import axios from "axios";
+import Joi, { boolean, object } from "joi";
 import React, { useState } from "react";
+import { toast } from "react-toastify";
 
 export const Login = () => {
   let [user, setUser] = useState({
@@ -45,9 +47,29 @@ export const Login = () => {
     }
   };
 
+  const onSubmit = async (e)=>{
+
+    e.preventDefault()
+    let err=true;
+    if (Object.keys(error).length===0){
+      
+      const {data}=await axios.post('https://lazy-blue-sockeye-gear.cyclic.app/api/v1/auth/signin',user);
+      if (data.message==="success"){
+        err=false;
+      }
+    }
+    if (err){
+      toast.error("login failed");
+    }
+    else{
+      toast.success("Welcome");
+    }
+    
+  }
+
   return (
     <div className="card container">
-      <form className="d-flex flex-column">
+      <form onSubmit={onSubmit} className="d-flex flex-column">
         <div className="form-group">
           <input
             onChange={onChange}
