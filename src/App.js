@@ -9,6 +9,9 @@ import { useEffect, useState } from 'react';
 import { Loader } from './components/Loader/Loader';
 import { MediaPage } from './components/MediaPage/MediaPage';
 import { About } from './components/About/About';
+import { Movies } from './components/Movies/Movies';
+import { Tv } from './components/Tv/Tv';
+import { Trailer } from './components/Common/Trailer/Trailer';
 
 
 
@@ -41,10 +44,13 @@ function App() {
             <Route path="/mediapage" element={<MediaPage/>}></Route>
             <Route path="/" element={<Home trending={trending}/>}></Route>
             <Route path="/login" element={ <Login/> }></Route>
+            <Route path="/movies" element={ <Movies/> }></Route>
+            <Route path="/tv" element={ <Tv /> }></Route>
             <Route path="/about" element={ <About /> }></Route>
           </Routes></>
         }
       
+       {/* <Trailer link={'https://www.youtube.com/embed/yjRHZEUamCc'}/> */}
        </div>
       
    
