@@ -11,7 +11,6 @@ const [media,setMedia] = useState()
     const onClick = async (e) => {
       
         const {data} = await axios.get(`https://api.themoviedb.org/3/${media_type}/${id}?api_key=d0cbf774321eda288e9defb5ec796daf&language=en-US`)
-        const videos = await axios.get(`https://api.themoviedb.org/3/${media_type}/${id}/videos?api_key=d0cbf774321eda288e9defb5ec796daf&language=en-US`)
         setMedia(data)
         localStorage.setItem('id',id);
         localStorage.setItem('media_type',media_type);
