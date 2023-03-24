@@ -147,9 +147,10 @@ span {
 
 .voteAvarageText{
   color: teal;
+  /* background-color: red; */
   position: absolute;
-  top: 36.7rem;
-  left: 51%;
+  top: 19rem;
+  left: 81.25%;
   z-index: 9999;
 }
 

@@ -8,6 +8,7 @@ import { Rating } from "../Rating/Rating";
 import styles from "./MediaPage.module.css";
 import findVideos from "../../utils/findVideos";
 import { Trailer } from "../Common/Trailer/Trailer";
+import { Card } from "../Common/Card/Card";
 
 export const MediaPage = () => {
   const [id, setId] = useState(localStorage.getItem("id")); // use params
@@ -20,6 +21,9 @@ export const MediaPage = () => {
   const [videos, setVideos] = useState({});
   const [trailer, setTrailer] = useState();
   const [hidden, setHidden] = useState(true);
+  const [recommendations,setRecommendations ] = useState([])
+
+
   const findTrailer = (videos) => {
     return videos.find((video) => video.name.toLowerCase().includes("trailer"));
   };
@@ -39,10 +43,15 @@ export const MediaPage = () => {
   //   console.log(e.target.href)
   //   window.location.href=data.homepage?data.homepage:window.location.href
   // }
-
+const getRecommended = async()=>{
+  const {data} = await axios.get(`https://api.themoviedb.org/3/${media_type}/${id}/recommendations?api_key=d0cbf774321eda288e9defb5ec796daf&language=en-US&page=1`)
+  console.log(data)
+  setRecommendations(data.results)
+}
   useEffect(() => {
     findMedia(id, media_type).then((data) => setMedia(data));
     findVideos(id, media_type).then((data) => setVideos(data));
+    getRecommended()
   }, []);
   //  https://www.youtube.com/watch?v=6JnN1DmbqoU
   return (
@@ -110,7 +119,7 @@ export const MediaPage = () => {
             </div>
             {/* end column2 */}
             <div className="d-flex w-75 text-center ps-5 justify-content-center">
-            <div className={styles.votingResult}><i className="fa-solid fa-heart" style={{position:'absolute' , top:35+'rem', left : 50+'%'}}></i><span className={styles.voteAvarageText}>{parseFloat(parseInt(media.vote_average*100,10))/10}%</span></div>
+            <div className={styles.votingResult}><i className="fa-solid fa-heart" style={{position:'absolute' , top:17+'rem', left : 80+'%'}}></i><span className={styles.voteAvarageText}>{parseFloat(parseInt(media.vote_average*100,10))/10}%</span></div>
             </div>
           </div>
           {/* end companies */}
@@ -118,7 +127,9 @@ export const MediaPage = () => {
         {/* end description */}
       </div>
       {/* end container */}
-      <Recommended />
+     {recommendations.length?<> <h2 className="w-1 text-center mt-5 bg-danger">Recommendations</h2>
+      <div className='d-flex justify-content-between flex-wrap'>
+        {recommendations?.map( (movie,index)=><Card key={index} description={movie.overview} media_type={movie.media_type} title={movie.title} rating={movie.vote_average} img1={movie.poster_path} img2={movie.backdrop_path} id={movie.id} />  )}</div></>:''}
     </div>
   );
 };

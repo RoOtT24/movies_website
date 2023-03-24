@@ -84,10 +84,10 @@ export const Login = ({setToken}) => {
     <div className="container mt-5 w-50 mb-5">
       
       <form onSubmit={onSubmit} className="card d-flex flex-column align-items-center bg-secondary" style={{height:'max-content'}}>
-      <div className="d-flex justify-content-center mb-3">
+      <div className="d-flex justify-content-centermb-3">
         <img className={styles.imgReg} src="/assets/img/login.png" alt="account pic" />
         </div>
-        <div className="form-group d-flex justify-content-center w-100">
+        <div className="form-group d-flex justify-content-center w-100 flex-column flex-wrap align-items-center">
 
         
 
@@ -108,7 +108,7 @@ export const Login = ({setToken}) => {
           : null
           }
         </div>
-        <div className="form-group d-flex justify-content-center w-100">
+        <div className="form-group d-flex justify-content-center w-100 flex-column flex-wrap align-items-center">
           <input
             onChange={onChange}
             type="password"
