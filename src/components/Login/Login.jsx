@@ -2,9 +2,14 @@ import axios from "axios";
 import Joi, { boolean, object } from "joi";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
+import cookie from "react-cookies"
+import styles from './Login.module.css'
+import { useNavigate } from "react-router-dom";
 
-export const Login = () => {
+export const Login = ({setToken}) => {
+  const navigate=useNavigate();
   let [user, setUser] = useState({
+  
     email: "",
     password: "",
   });
@@ -56,6 +61,13 @@ export const Login = () => {
       const {data}=await axios.post('https://lazy-blue-sockeye-gear.cyclic.app/api/v1/auth/signin',user);
       if (data.message==="success"){
         err=false;
+      // localStorage.setItem('token',data.token);
+      
+      cookie.save('token' , data.token);
+      setToken(data.token);
+     
+      navigate("/home");
+
       }
     }
     if (err){
@@ -63,14 +75,22 @@ export const Login = () => {
     }
     else{
       toast.success("Welcome");
+
     }
     
   }
 
   return (
-    <div className="card container">
-      <form onSubmit={onSubmit} className="d-flex flex-column">
+    <div className=" container mt-5 w-50 mb-5">
+      
+      <form onSubmit={onSubmit} className="card d-flex flex-column align-items-center bg-secondary" style={{height:60+'vh'}}>
+      <div className="d-flex justify-content-center mb-3">
+        <img className={styles.imgReg} src="/assets/img/login.png" alt="account pic" />
+        </div>
         <div className="form-group">
+
+        
+
           <input
             onChange={onChange}
             type="email"
@@ -106,7 +126,7 @@ export const Login = () => {
           }
         </div>
 
-        <button type="submit" className="btn btn-primary w-25 ">
+        <button type="submit" id={styles.btn} className="btn btn-primary  ">
           Submit
         </button>
       </form>

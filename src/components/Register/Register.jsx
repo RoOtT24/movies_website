@@ -58,7 +58,7 @@ export const Register = () => {
       password: Joi.string()
           .min(3).required(),
   
-      cpassword: Joi.any().valid(inputs.password).required().messages({
+      cPassword: Joi.any().valid(inputs.password).required().messages({
         "any.only":"Does not match password"
         }).required(),
   
@@ -97,9 +97,9 @@ export const Register = () => {
 ///////////////////////////////////////
 
   return (
-    <form onSubmit={onSubmit} className="container text-center mt-5 w-50">
+    <form onSubmit={onSubmit} className="container text-center mt-5 w-50 mb-5">
       
-      <div className="card p-5 bg-secondary">
+      <div className="card px-5 py-3 bg-secondary ">
       <div className="d-flex justify-content-center mb-3">
         <img className={styles.imgReg} src="/assets/img/login.png" alt="account pic" />
         </div>
