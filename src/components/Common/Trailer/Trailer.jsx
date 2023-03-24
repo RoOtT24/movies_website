@@ -11,7 +11,7 @@ export const Trailer = ({link, hidden}) => {
     }, [hidden]);
   return (
     <>
-    <button onClick={onClick} className='position-absolute bg-dangerd-block px-3 py-2 bg-danger' style={{zIndex : 3,right : 0,top : 4+"rem"}}>X</button>
+    <button onClick={onClick} className='position-absolute bg-light' style={shown?{zIndex : 3,right : 40+'%',top : 0+"rem", borderRadius:25+'%', fontSize:3+'rem'}:{display : 'none'}}><i className="fa-solid fa-circle-xmark"></i></button>
     <iframe className={shown?styles.trailer2:styles.trailer1} width={942} height={500} src={link} title="Trailer"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share;" allowFullScreen  />
 </>
   )

@@ -23,7 +23,7 @@
   font: 14px/22px "Lato", Arial, sans-serif;
   color: #fff;
   padding: 40px 0;
-  
+
 }
 
 .container {
@@ -38,92 +38,125 @@
 }
 
 .hero {
-  height: 342px;  
-  margin:0;
+  height: 342px;
+  margin: 0;
   position: relative;
   overflow: hidden;
-  z-index:0;
+  z-index: 0;
   border-top-left-radius: 5%;
   border-top-right-radius: 5%;
-    
+
 }
 
 
 .coverImage {
-  
-  width:100%; 
-  height:100%;
-  position:absolute;
+
+  width: 100%;
+  height: 100%;
+  position: absolute;
   overflow: hidden;
-  top:0; left:0;
+  top: 0;
+  left: 0;
   /* background:red; */
-  z-index:0;
+  z-index: 0;
   transform: skewY(-2.2deg);
-  transform-origin:0 0;
-  
+  transform-origin: 0 0;
+
   /*chrome antialias fix */
-  -webkit-backface-visibility: hidden; 
-  
+  -webkit-backface-visibility: hidden;
+
 }
 
 .coverImage img {
-  width:100%; height:100%;
-  
+  width: 100%;
+  height: 100%;
+
 }
-
-
 
 .details {
-  
-  padding: 190px 0 0 230px;
-  height: 250px;
+  padding: 13rem 0 0 14rem;
+  height: 14rem;
   text-align: center;
 }
-  
-  .title1 {
-    color: #C7C1BA;
-    font-size: 2.2rem;
-    margin: 2.5rem 0 0.5rem 0;
-    position: relative;
-    line-height: 2rem;
-    /* height: 100%; */
-  }
-    
-    span {
-      position: absolute;
-      top: 3px;
-      margin-left: 12px;
-      background: teal;
-      border-radius: 5px;
-      /* color: #544C21; */
-      font-size: 14px;
-      padding: 0px 4px;
-      
-    }
-  
 
-  .title2 {    
-    color: #ff9696;
-    font-size: 1.2rem;    
-    font-weight: 300;
-    /* margin-bottom: 1rem; */
-    height: 50%;
-    width: 100%;
-    position: relative;
-  }
+.title1 {
+  color: #C7C1BA;
+  font-size: 2.2rem;
+  /* margin: 2.5rem 0 0.5rem 0; */
   
-  
-  .likes {
-    margin-left: 24px;
-  }
-  
-  
-  .likes:before {
+  margin: 1rem;
+  margin-left: 0;
+  margin-right: 0;
+  position: relative;
+  line-height: 2rem;
+  width: 100%;
+  text-shadow: 2px 2px 3px #000;
+  height: 100%;
+}
+
+span {
+  position: absolute;
+  top: 3px;
+  margin-left: 12px;
+  /* background: teal; */
+  border-radius: 5px;
+  /* color: #544C21; */
+  font-size: 14px;
+  padding: 0px 4px;
+
+}
+
+
+.title2 {
+  height: 40%;
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+
+  align-items: center;
+}
+
+.title2_text {
+  text-shadow: 1px 1px 1px #000;
+  /* color: hsl(0, 100%, 64%); */
+  color: red;
+  font-size: 1.2rem;
+  font-weight: 300;
+  font-weight: 400;
+  /* margin-bottom: 5rem; */
+}
+
+
+.vote {
+  width: 30%;
+  /* display: flex; */
+  /* justify-content: space-evenly; */
+}
+.votingResult {
+  width: 50%;
+  height: 50%;
+  font-size: 5rem;
+}
+.voteAvarage {
+  position: relative;
+  padding: 0;
+  font-size: 3rem;
+}
+
+.voteAvarageText{
+  color: teal;
+  position: absolute;
+  top: 36.7rem;
+  left: 51%;
+  z-index: 9999;
+}
+
+/* .vote:before {
     content: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/icon_like.png");
     position: relative;
-    top: 2px;
-    padding-right: 7px;
-  }
+  } */
 
 
 
@@ -137,7 +170,7 @@
   font-size: 1rem;
   /* line-height: 1rem; */
   color: white;
-  
+
 }
 
 .column1 {
@@ -203,11 +236,12 @@
 
 
 .img1Icon {
-position: absolute;
-height: 40%;
-width: 25%;
+  position: absolute;
+  height: 40%;
+  width: 25%;
 }
-.img3{
+
+.img3 {
   width: 80%;
   height: 50%;
   position: absolute;
@@ -219,15 +253,18 @@ width: 25%;
   opacity: 0;
   /* visibility: hidden; */
 }
-img{
+
+img {
   transition: opacity 1s;
 }
-.mediaLink:hover .cover{
-  opacity:0.5 ;
+
+.mediaLink:hover .cover {
+  opacity: 0.5;
   /* display: block; */
   /* opacity: 1; */
 }
-.mediaLink:hover .img3{
+
+.mediaLink:hover .img3 {
   opacity: 1;
   /* display: block; */
 }
@@ -238,51 +275,57 @@ img{
 
 /*star rating stuff via: https://codepen.io/jamesbarnett/pen/vlpkh/*/
 
-fieldset, label { margin: 0; padding: 0; }
+fieldset, label {
+  margin: 0;
+  padding: 0;
+}
 
 /****** Style Star Rating Widget *****/
 
-.rating { 
+.rating {
   border: none;
   /* float: left; */
   /* padding-left: 5rem; */
 }
-.trailer1{
-    z-index: 0;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    display: none;
+
+.trailer1 {
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: none;
 }
-.trailer2{
-    z-index: 2;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    /* display: none; */
+
+.trailer2 {
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  /* display: none; */
 }
 
 
-.rating  input { display: none; } 
-.rating  label:before { 
+.rating input {
+  display: none;
+}
+
+.rating label:before {
   margin: 0.5rem;
-  
-  font-size: 0.9em ;
+  font-size: 0.8em;
   font-family: FontAwesome;
-  /* display: inline-block; */
   content: "\f005";
-  
+
 }
 
- .star{ 
+.star {
   /* content: "\f089"; */
   /* position: absolute; */
   margin-top: 1rem;
 }
 
-label { 
-color: #ddd; 
- /* float: right;  */
+label {
+  color: #ddd;
+  /* float: right;  */
 }
 
 /***** CSS Magic to Highlight Stars on Hover *****/
@@ -291,12 +334,14 @@ color: #ddd;
 .link[data-tooltip] {
   position: relative;
 }
+
 .link[data-tooltip]::before,
 .link[data-tooltip]::after {
   position: absolute;
   display: none;
   opacity: 0.85;
 }
+
 .link[data-tooltip]::before {
   /*
    * using data-tooltip instead of title so we 
@@ -312,6 +357,7 @@ color: #ddd;
   white-space: nowrap;
   text-decoration: none;
 }
+
 .link[data-tooltip]::after {
   width: 0;
   height: 0;
@@ -332,6 +378,7 @@ color: #ddd;
   left: 0;
   margin-bottom: 40px;
 }
+
 .link[data-tooltip][data-placement="top"]::after {
   border-top-color: #000;
   border-bottom: none;
