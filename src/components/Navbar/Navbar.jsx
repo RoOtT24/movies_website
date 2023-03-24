@@ -1,8 +1,23 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import styles from './Navbar.module.css'
+import cookie from "react-cookies"
 
-export default function Navbar() {
+export default function Navbar({token,setToken}) {
+
+  function logout(){
+
+    cookie.remove('token');
+    setToken(null);
+
+  }
+  useEffect(() => {
+    
+  console.log(token);
+   
+  }, [token])
+  
+ 
   return (
     <nav className="navbar navbar-expand-lg navbar-light">
       <div className='container'>
@@ -21,12 +36,15 @@ export default function Navbar() {
         
       </ul>
       <ul className="navbar-nav ms-auto">
-        <li className="nav-item">
+        {token?<li className="nav-item">
+          <a onClick={logout} className="nav-link" href="/">logout</a>
+        </li>:<><li className="nav-item">
           <Link className="nav-link" to="/register">Register</Link>
         </li>
         <li className="nav-item">
           <Link className="nav-link" to="/login">Login</Link>
-        </li>
+        </li></>}
+        
         
       </ul>
     </div>

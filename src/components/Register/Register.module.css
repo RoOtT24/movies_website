@@ -4,7 +4,7 @@
 }
 
 form {
-    height: 80vh !important;
+    height: max-content ;
 }
 form div input {
     background-color: #aeccc6 !important;
