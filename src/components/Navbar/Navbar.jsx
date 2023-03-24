@@ -3,19 +3,20 @@ import { Link } from 'react-router-dom'
 import styles from './Navbar.module.css'
 import cookie from "react-cookies"
 
-export default function Navbar({token,setToken}) {
+const Navbar = ({token,setToken,setLoading})=> {
 
   function logout(){
 
     cookie.remove('token');
     setToken(null);
+    setLoading(true)
 
   }
   useEffect(() => {
     
-  console.log(token);
+  // console.log(token);
    
-  }, [token])
+  }, [])
   
  
   return (
@@ -26,7 +27,7 @@ export default function Navbar({token,setToken}) {
       <span className="navbar-toggler-icon" />
     </button>
     <div className="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul className="navbar-nav me-auto">
+     {token?<ul className="navbar-nav me-auto">
         <li className="nav-item">
           <Link className="nav-link" to="/home">Home</Link>
         </li>
@@ -34,7 +35,7 @@ export default function Navbar({token,setToken}) {
           <Link className="nav-link" to="/about">About</Link>
         </li>
         
-      </ul>
+      </ul>:''} 
       <ul className="navbar-nav ms-auto">
         {token?<li className="nav-item">
           <a onClick={logout} className="nav-link" href="/">logout</a>
@@ -52,3 +53,4 @@ export default function Navbar({token,setToken}) {
   </nav>
   )
 }
+export default Navbar

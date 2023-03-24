@@ -81,20 +81,20 @@ export const Login = ({setToken}) => {
   }
 
   return (
-    <div className=" container mt-5 w-50 mb-5">
+    <div className="container mt-5 w-50 mb-5">
       
-      <form onSubmit={onSubmit} className="card d-flex flex-column align-items-center bg-secondary" style={{height:60+'vh'}}>
+      <form onSubmit={onSubmit} className="card d-flex flex-column align-items-center bg-secondary" style={{height:'max-content'}}>
       <div className="d-flex justify-content-center mb-3">
         <img className={styles.imgReg} src="/assets/img/login.png" alt="account pic" />
         </div>
-        <div className="form-group">
+        <div className="form-group d-flex justify-content-center w-100">
 
         
 
           <input
             onChange={onChange}
             type="email"
-            className="form-control my-3"
+            className="form-control w-75 my-3"
             id="email"
             aria-describedby="emailHelp"
             placeholder="Enter email"
@@ -108,11 +108,11 @@ export const Login = ({setToken}) => {
           : null
           }
         </div>
-        <div className="form-group">
+        <div className="form-group d-flex justify-content-center w-100">
           <input
             onChange={onChange}
             type="password"
-            className="form-control my-3"
+            className="form-control w-75 my-3"
             id="password"
             placeholder="Password"
           />
@@ -126,7 +126,7 @@ export const Login = ({setToken}) => {
           }
         </div>
 
-        <button type="submit" id={styles.btn} className="btn btn-primary  ">
+        <button type="submit" id={styles.btn} className="btn btn-primary mt-3 mb-5">
           Submit
         </button>
       </form>

@@ -16,6 +16,7 @@ import { Trailer } from './components/Common/Trailer/Trailer';
 
 import {ProtectedRoutes} from './components/ProtectedRoutes/ProtectedRoutes';
 import cookie from "react-cookies";
+import { UnProtectedRoutes } from './components/UnProtectedRoutes/UnProtectedRoutes';
 
 
 
@@ -32,6 +33,7 @@ function App() {
 
   useEffect(() => {
     getMovies();
+    // console.log("in app = ", token)
     setTimeout(() => {
       setLoading(false);
     }, 2000);
@@ -42,23 +44,28 @@ function App() {
         {
           loading ? <Loader/>
           : <>
-          <Navbar setToken={setToken}/>
+          <Navbar setToken={setToken} token ={token} setLoading={setLoading}/>
           <Routes>
+
+          {/* Un Protected Routes */}
+            <Route element={<UnProtectedRoutes/>}>
             <Route path="/register" element={<Register/>}></Route>
             <Route path="/login" element={ <Login token={token} setToken={setToken}/> }></Route>
+            </Route>
+
+
+          {/* Protected Routes */}
             <Route element={<ProtectedRoutes/>}>
             <Route path="/home" element={<Home trending={trending}/>}></Route>
             <Route path="/mediapage" element={<MediaPage/>}></Route>
             <Route path="/" element={<Home trending={trending}/>}></Route>
-<<<<<<< HEAD
-            <Route path="/login" element={ <Login/> }></Route>
             <Route path="/movies" element={ <Movies/> }></Route>
             <Route path="/tv" element={ <Tv /> }></Route>
-=======
-           
->>>>>>> Aziza
             <Route path="/about" element={ <About /> }></Route>
             </Route>
+
+
+
           </Routes></>
         }
       
