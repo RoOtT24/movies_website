@@ -1,0 +1,68 @@
+.column {
+    float: left;
+    width: 30%;
+    margin-bottom: 5rem;
+    margin-top: 1.5rem;
+    padding: 0 8px;
+    height: 50%;
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+  
+  .card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    margin: 8px;
+    border-radius: 10%;
+  }
+  
+  .aboutSection {
+    padding: 50px;
+    text-align: center;
+    background-color: #474e5d;
+    color: white;
+  }
+
+  .aboutImg {
+    height: 50% !important;
+    object-fit: contain;
+  }
+  
+  .container {
+    padding: 0 16px;
+    color: cornsilk;
+  }
+  
+  .container::after, .row::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+  
+  .title {
+    color: hsl(0, 0%, 85%) !important;
+  }
+  
+  .button {
+    border: none;
+    outline: 0;
+    display: inline-block;
+    padding: 8px;
+    color: white;
+    background-color: #25745c !important;
+    border-color: #25745c !important; 
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+  }
+  
+  .button:hover {
+    background-color: white;
+    color: #25745c;
+  }
+  
+  @media screen and (max-width: 650px) {
+    .column {
+      width: 100%;
+      display: block;
+    }
+  }

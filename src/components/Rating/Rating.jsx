@@ -2,12 +2,14 @@ import axios from "axios";
 import React from "react";
 import { toast } from "react-toastify";
 import styles from "./Rating.module.css";
+import cookie from "react-cookies";
+
 
 export const Rating = ({ id, media_type }) => {
   const onClick = async (e) => {
     const { value } = e.target;
     const { data } = await axios.post(
-      `https://api.themoviedb.org/3/${media_type}/${id}/rating?api_key=d0cbf774321eda288e9defb5ec796daf`,
+      `https://api.themoviedb.org/3/${media_type}/${id}/rating?api_key=d0cbf774321eda288e9defb5ec796daf&guest_session_id=${cookie.load('guest_session_id')}`,
       value
     );
     console.log("data   ==   ", data);

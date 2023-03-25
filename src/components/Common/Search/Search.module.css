@@ -1,0 +1,10 @@
+.search{
+    position: absolute;
+    top: 1rem;
+    left: 42%;
+    z-index: 2;
+}
+
+.search input {
+    padding-left: 2rem;
+}

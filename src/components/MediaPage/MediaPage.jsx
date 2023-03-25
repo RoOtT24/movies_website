@@ -11,6 +11,8 @@ import { Trailer } from "../Common/Trailer/Trailer";
 import { Card } from "../Common/Card/Card";
 
 export const MediaPage = () => {
+  ////////////////////////////////////////
+  // variables
   const [id, setId] = useState(localStorage.getItem("id")); // use params
   const [media_type, setMedia_type] = useState(
     localStorage.getItem("media_type")
@@ -21,9 +23,10 @@ export const MediaPage = () => {
   const [videos, setVideos] = useState({});
   const [trailer, setTrailer] = useState();
   const [hidden, setHidden] = useState(true);
-  const [recommendations,setRecommendations ] = useState([])
+  const [recommendations, setRecommendations] = useState([]);
+///////////////////////////////////////////////////////////////////////
 
-
+    // functions
   const findTrailer = (videos) => {
     return videos.find((video) => video.name.toLowerCase().includes("trailer"));
   };
@@ -38,20 +41,23 @@ export const MediaPage = () => {
     setHidden(!hidden);
   };
 
-  // const onClick = async (e,id)=>{
-  //   const {data} = await axios.get(`https://api.themoviedb.org/3/company/${e.target.id}?api_key=d0cbf774321eda288e9defb5ec796daf`)
-  //   console.log(e.target.href)
-  //   window.location.href=data.homepage?data.homepage:window.location.href
-  // }
-const getRecommended = async()=>{
-  const {data} = await axios.get(`https://api.themoviedb.org/3/${media_type}/${id}/recommendations?api_key=d0cbf774321eda288e9defb5ec796daf&language=en-US&page=1`)
-  console.log(data)
-  setRecommendations(data.results)
-}
+  const getRecommended = async () => {
+    const { data } = await axios.get(
+      `https://api.themoviedb.org/3/${media_type}/${id}/recommendations?api_key=d0cbf774321eda288e9defb5ec796daf&language=en-US&page=1`
+    );
+    // console.log(data);
+    setRecommendations(data.results);
+  };
   useEffect(() => {
-    findMedia(id, media_type).then((data) => setMedia(data));
-    findVideos(id, media_type).then((data) => setVideos(data));
-    getRecommended()
+    findMedia(
+      localStorage.getItem("id"),
+      localStorage.getItem("media_type")
+    ).then((data) => setMedia(data));
+    findVideos(
+      localStorage.getItem("id"),
+      localStorage.getItem("media_type")
+    ).then((data) => setVideos(data));
+    getRecommended();
   }, []);
   //  https://www.youtube.com/watch?v=6JnN1DmbqoU
   return (
@@ -88,18 +94,13 @@ const getRecommended = async()=>{
               {media?.original_title
                 ? media.original_title
                 : media.original_name}
-                
             </div>
             <div className={styles.title2}>
               <div className={styles.title2_text}>{media?.tagline}</div>
               <div className={styles.vote}>
                 <Rating id={media.id} media_type={media_type} />
-               
               </div>
             </div>
-
-            {/* <span className={styles.vote}> <Rating /> </span> */}
-            {/* <span className={styles}></span> */}
           </div>
           {/* end details */}
         </div>
@@ -119,7 +120,19 @@ const getRecommended = async()=>{
             </div>
             {/* end column2 */}
             <div className="d-flex w-75 text-center ps-5 justify-content-center">
-            <div className={styles.votingResult}><i className="fa-solid fa-heart" style={{position:'absolute' , top:17+'rem', left : 80+'%'}}></i><span className={styles.voteAvarageText}>{parseFloat(parseInt(media.vote_average*100,10))/10}%</span></div>
+              <div className={styles.votingResult}>
+                <i
+                  className="fa-solid fa-heart"
+                  style={{
+                    position: "absolute",
+                    top: 60 + "%",
+                    left: 90 + "%",
+                  }}
+                ></i>
+                <span className={styles.voteAvarageText}>
+                  {parseFloat(parseInt(media.vote_average * 100, 10)) / 10}%
+                </span>
+              </div>
             </div>
           </div>
           {/* end companies */}
@@ -127,9 +140,31 @@ const getRecommended = async()=>{
         {/* end description */}
       </div>
       {/* end container */}
-     {recommendations.length?<> <h2 className="w-1 text-center mt-5 bg-danger">Recommendations</h2>
-      <div className='d-flex justify-content-between flex-wrap'>
-        {recommendations?.map( (movie,index)=><Card key={index} description={movie.overview} media_type={movie.media_type} title={movie.title} rating={movie.vote_average} img1={movie.poster_path} img2={movie.backdrop_path} id={movie.id} />  )}</div></>:''}
+      {recommendations.length ? (
+        <>
+          {" "}
+          <h2 className="w-1 text-center mt-5 bg-danger">Recommendations</h2>
+          <div className="d-flex justify-content-between flex-wrap">
+            {recommendations?.map((movie, index) => {
+              console.log("============= ", movie);
+              return (
+                <Card
+                  key={index}
+                  description={movie.overview}
+                  media_type={movie.media_type}
+                  title={movie.title}
+                  rating={movie.vote_average}
+                  img1={movie.poster_path}
+                  img2={movie.backdrop_path}
+                  id={movie.id}
+                />
+              );
+            })}
+          </div>
+        </>
+      ) : (
+        ""
+      )}
     </div>
   );
 };

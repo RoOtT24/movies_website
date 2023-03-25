@@ -2,14 +2,13 @@ import axios from "axios";
 import Joi, { boolean, object } from "joi";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
-import cookie from "react-cookies"
-import styles from './Login.module.css'
+import cookie from "react-cookies";
+import styles from "./Login.module.css";
 import { useNavigate } from "react-router-dom";
 
-export const Login = ({setToken}) => {
-  const navigate=useNavigate();
+export const Login = ({ setToken }) => {
+  const navigate = useNavigate();
   let [user, setUser] = useState({
-  
     email: "",
     password: "",
   });
@@ -34,7 +33,7 @@ export const Login = ({setToken}) => {
         .email({ minDomainSegments: 2, tlds: { allow: ["com", "edu"] } })
         .required(),
 
-      password: Joi.string().min(3).required(),
+      password: Joi.string().min(8).required(),
     });
 
     let valid = schema.extract(id).validate(value);
@@ -52,61 +51,59 @@ export const Login = ({setToken}) => {
     }
   };
 
-  const onSubmit = async (e)=>{
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    let err = true
+    if (Object.keys(error).length === 0) {
+      const saraha = await axios.post(
+        "https://lazy-blue-sockeye-gear.cyclic.app/api/v1/auth/signin",
+        user
+      );
 
-    e.preventDefault()
-    let err=true;
-    if (Object.keys(error).length===0){
-      
-      const {data}=await axios.post('https://lazy-blue-sockeye-gear.cyclic.app/api/v1/auth/signin',user);
-      if (data.message==="success"){
-        err=false;
-      // localStorage.setItem('token',data.token);
-      
-      cookie.save('token' , data.token);
-      setToken(data.token);
-     
-      navigate("/home");
+      const { data } = await axios.post(
+        "https://api.themoviedb.org/3/authentication/guest_session/new?api_key=d0cbf774321eda288e9defb5ec796daf"
+      );
+      if (data.success && saraha.data.message === "success") {
+        err = false;
 
+        console.log("success3");
+        setToken(data.guest_session_id);
+        cookie.save("guest_session_id", data.guest_session_id);
+        navigate("/home");
       }
     }
-    if (err){
+    if (err) {
       toast.error("login failed");
-    }
-    else{
+    } else {
       toast.success("Welcome");
-
     }
-    
-  }
+  };
 
   return (
     <div className="container mt-5 w-50 mb-5">
-      
-      <form onSubmit={onSubmit} className="card d-flex flex-column align-items-center bg-secondary" style={{height:'max-content'}}>
-      <div className="d-flex justify-content-centermb-3">
-        <img className={styles.imgReg} src="/assets/img/login.png" alt="account pic" />
+      <form
+        onSubmit={onSubmit}
+        className="card d-flex flex-column align-items-center bg-secondary"
+        style={{ height: "max-content" }}
+      >
+        <div className="d-flex justify-content-centermb-3">
+          <img
+            className={styles.imgReg}
+            src="/assets/img/login.png"
+            alt="account pic"
+          />
         </div>
         <div className="form-group d-flex justify-content-center w-100 flex-column flex-wrap align-items-center">
-
-        
-
           <input
             onChange={onChange}
             type="email"
             className="form-control w-75 my-3"
             id="email"
-            aria-describedby="emailHelp"
             placeholder="Enter email"
           />
-          {error['email']?.length>0?
-          <div className="alert alert-danger">
-
-            {error['email']}
-
-          </div>
-          : null
-          }
+          {error["email"]?.length > 0 ? (
+            <div className="alert alert-danger">{error["email"]}</div>
+          ) : null}
         </div>
         <div className="form-group d-flex justify-content-center w-100 flex-column flex-wrap align-items-center">
           <input
@@ -116,17 +113,16 @@ export const Login = ({setToken}) => {
             id="password"
             placeholder="Password"
           />
-           {error['password']?.length>0?
-          <div className="alert alert-danger">
-
-            {error['password']}
-
-          </div>
-          : null
-          }
+          {error["password"]?.length > 0 ? (
+            <div className="alert alert-danger">{error["password"]}</div>
+          ) : null}
         </div>
 
-        <button type="submit" id={styles.btn} className="btn btn-primary mt-3 mb-5">
+        <button
+          type="submit"
+          id={styles.btn}
+          className="btn btn-primary mt-3 mb-5"
+        >
           Submit
         </button>
       </form>

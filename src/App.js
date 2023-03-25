@@ -17,13 +17,14 @@ import { Trailer } from './components/Common/Trailer/Trailer';
 import {ProtectedRoutes} from './components/ProtectedRoutes/ProtectedRoutes';
 import cookie from "react-cookies";
 import { UnProtectedRoutes } from './components/UnProtectedRoutes/UnProtectedRoutes';
+import Footer from './components/Footer/Footer';
 
 
 
 function App() {
   const [trending, setTrending] = useState([])
   const [loading, setLoading] = useState(true)
-  let [token,setToken] = useState(cookie.load('token'));
+  let [token,setToken] = useState(cookie.load('guest_session_id'));
 
   const getMovies = async ()=> {
     const {data} = await axios.get('https://api.themoviedb.org/3/trending/all/day?api_key=d0cbf774321eda288e9defb5ec796daf')
@@ -59,14 +60,17 @@ function App() {
             <Route path="/home" element={<Home trending={trending}/>}></Route>
             <Route path="/mediapage" element={<MediaPage/>}></Route>
             <Route path="/" element={<Home trending={trending}/>}></Route>
-            <Route path="/movies" element={ <Movies/> }></Route>
-            <Route path="/tv" element={ <Tv /> }></Route>
+            <Route path="/movies" element={ <Movies setLoading={setLoading}/> }></Route>
+            <Route path="/tv" element={ <Tv setLoading={setLoading}/> }></Route>
             <Route path="/about" element={ <About /> }></Route>
             </Route>
 
 
+          </Routes>
 
-          </Routes></>
+
+          <Footer/>
+          </>
         }
       
        {/* <Trailer link={'https://www.youtube.com/embed/yjRHZEUamCc'}/> */}

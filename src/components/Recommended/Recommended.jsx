@@ -18,7 +18,6 @@ export const Recommended = ({ recommended }) => {
       <ul>
         {recommended?.map((media, index) => (
           <li {...liStyle} key={index} className={styles.li} onClick={async ()=>{
-             const {data} = await axios.get(`https://api.themoviedb.org/3/${media.media_type}/${media.id}?api_key=d0cbf774321eda288e9defb5ec796daf&language=en-US`)
              localStorage.setItem('id',media.id);
              localStorage.setItem('media_type',media.media_type);
              localStorage.setItem('img1',`https://image.tmdb.org/t/p/w1280/${media.poster_path}`);

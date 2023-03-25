@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import styles from './Navbar.module.css'
 import cookie from "react-cookies"
@@ -6,11 +6,9 @@ import cookie from "react-cookies"
 const Navbar = ({token,setToken,setLoading})=> {
 
   function logout(){
-
-    cookie.remove('token');
+    cookie.remove('guest_session_id');
     setToken(null);
     setLoading(true)
-
   }
   useEffect(() => {
     
@@ -22,7 +20,7 @@ const Navbar = ({token,setToken,setLoading})=> {
   return (
     <nav className="navbar navbar-expand-lg navbar-light">
       <div className='container'>
-    <Link className="navbar-brand" to="/"><img className={styles.logo} src='/assets/img/cinema.png'/></Link>
+    <Link className="navbar-brand" to="/"><img className={styles.logo} src='/assets/img/cinema.png' alt='logo'/></Link>
     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span className="navbar-toggler-icon" />
     </button>
