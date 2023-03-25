@@ -18,6 +18,7 @@ import {ProtectedRoutes} from './components/ProtectedRoutes/ProtectedRoutes';
 import cookie from "react-cookies";
 import { UnProtectedRoutes } from './components/UnProtectedRoutes/UnProtectedRoutes';
 import Footer from './components/Footer/Footer';
+import PageNotfound from './components/PageNotFound/PageNotfound';
 
 
 
@@ -34,7 +35,6 @@ function App() {
 
   useEffect(() => {
     getMovies();
-    // console.log("in app = ", token)
     setTimeout(() => {
       setLoading(false);
     }, 2000);
@@ -58,11 +58,12 @@ function App() {
           {/* Protected Routes */}
             <Route element={<ProtectedRoutes/>}>
             <Route path="/home" element={<Home trending={trending}/>}></Route>
-            <Route path="/mediapage" element={<MediaPage/>}></Route>
+            <Route path="/mediapage/:id/:type" element={<MediaPage/>}></Route>
             <Route path="/" element={<Home trending={trending}/>}></Route>
             <Route path="/movies" element={ <Movies setLoading={setLoading}/> }></Route>
             <Route path="/tv" element={ <Tv setLoading={setLoading}/> }></Route>
             <Route path="/about" element={ <About /> }></Route>
+            <Route path='*' element={<PageNotfound/>}></Route>
             </Route>
 
 

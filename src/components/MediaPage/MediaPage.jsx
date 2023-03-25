@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import findMedia from "../../utils/findMedia";
 import { Recommended } from "../Recommended/Recommended";
 import { Rating } from "../Rating/Rating";
@@ -13,12 +13,9 @@ import { Card } from "../Common/Card/Card";
 export const MediaPage = () => {
   ////////////////////////////////////////
   // variables
-  const [id, setId] = useState(localStorage.getItem("id")); // use params
-  const [media_type, setMedia_type] = useState(
-    localStorage.getItem("media_type")
-  ); // use params
-  const [img1, setImg1] = useState(localStorage.getItem("img1"));
-  const [img2, setImg2] = useState(localStorage.getItem("img2"));
+  const {id} = useParams()  // use params
+  const arr = window.location.href.split('/')
+  const media_type = arr[arr.length-1]
   const [media, setMedia] = useState({});
   const [videos, setVideos] = useState({});
   const [trailer, setTrailer] = useState();
@@ -31,12 +28,9 @@ export const MediaPage = () => {
     return videos.find((video) => video.name.toLowerCase().includes("trailer"));
   };
   const onClick = (e) => {
-    // console.log("Trailer = ",findTrailer(videos.results))
     const src = `https://www.youtube.com/embed/${
       findTrailer(videos.results).key
     }?showinfo=0`;
-    // console.log(src)
-    // `https://www.youtube.com/embed/-TXtyYZIiWc?list=RDGMEM6ijAnFTG9nX1G-kbWBUCJAVM-TXtyYZIiWc`
     setTrailer(src);
     setHidden(!hidden);
   };
@@ -45,20 +39,20 @@ export const MediaPage = () => {
     const { data } = await axios.get(
       `https://api.themoviedb.org/3/${media_type}/${id}/recommendations?api_key=d0cbf774321eda288e9defb5ec796daf&language=en-US&page=1`
     );
-    // console.log(data);
     setRecommendations(data.results);
   };
   useEffect(() => {
+    setRecommendations([])
     findMedia(
-      localStorage.getItem("id"),
-      localStorage.getItem("media_type")
+      id,
+      media_type
     ).then((data) => setMedia(data));
     findVideos(
-      localStorage.getItem("id"),
-      localStorage.getItem("media_type")
+      id,
+      media_type
     ).then((data) => setVideos(data));
     getRecommended();
-  }, []);
+  }, [id, media_type]);
   //  https://www.youtube.com/watch?v=6JnN1DmbqoU
   return (
     <div className={styles.movie_card}>
@@ -81,13 +75,13 @@ export const MediaPage = () => {
                 alt="media"
                 className={styles.img3}
               />
-              <img src={img1} alt="media" className={styles.cover} />
+              <img src={`https://image.tmdb.org/t/p/w1280/${media?.poster_path}`} alt="media" className={styles.cover} />
             </div>
           </div>
         </Link>
         <div className={styles.hero}>
           <div className={styles.coverImage}>
-            <img src={img2} alt="cover" />
+            <img src={`https://image.tmdb.org/t/p/w1280/${media?.backdrop_path}`} alt="cover" />
           </div>
           <div className={styles.details}>
             <div className={styles.title1}>
@@ -115,8 +109,8 @@ export const MediaPage = () => {
           </div>
           {/* end column1 */}
           <div className="w-75">
-            <div className={styles.column2}>
-              <p>{media?.overview}</p>
+            <div className={styles.column2} style={{overflow:'hidden'}}>
+              <p style={{textOverflow:'ellipsis', overflow:'hidden', whiteSpace:'pre-wrap'}}>{media?.overview}</p>
             </div>
             {/* end column2 */}
             <div className="d-flex w-75 text-center ps-5 justify-content-center">
@@ -125,7 +119,7 @@ export const MediaPage = () => {
                   className="fa-solid fa-heart"
                   style={{
                     position: "absolute",
-                    top: 60 + "%",
+                    top: 63 + "%",
                     left: 90 + "%",
                   }}
                 ></i>
@@ -146,7 +140,6 @@ export const MediaPage = () => {
           <h2 className="w-1 text-center mt-5 bg-danger">Recommendations</h2>
           <div className="d-flex justify-content-between flex-wrap">
             {recommendations?.map((movie, index) => {
-              console.log("============= ", movie);
               return (
                 <Card
                   key={index}
