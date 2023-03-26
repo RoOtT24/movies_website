@@ -9,11 +9,8 @@ import { useEffect, useState } from 'react';
 import { Loader } from './components/Loader/Loader';
 import { MediaPage } from './components/MediaPage/MediaPage';
 import { About } from './components/About/About';
-
 import { Movies } from './components/Movies/Movies';
 import { Tv } from './components/Tv/Tv';
-import { Trailer } from './components/Common/Trailer/Trailer';
-
 import {ProtectedRoutes} from './components/ProtectedRoutes/ProtectedRoutes';
 import cookie from "react-cookies";
 import { UnProtectedRoutes } from './components/UnProtectedRoutes/UnProtectedRoutes';

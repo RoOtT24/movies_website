@@ -22,68 +22,60 @@
 .movie_card {
   font: 14px/22px "Lato", Arial, sans-serif;
   color: #fff;
-  padding: 40px 0;
-
+  padding: 3rem 0;
 }
 
 .container {
   margin: 0 auto;
-  width: 60%;
+  width: 55%;
   height: 80vh;
   background: #6C757D;
-  border-radius: 5px;
   position: relative;
   color: #fff;
   border-radius: 5%;
+  position: relative;
 }
 
 .hero {
-  height: 342px;
+  height: 58%;
   margin: 0;
   position: relative;
   overflow: hidden;
   z-index: 0;
   border-top-left-radius: 5%;
   border-top-right-radius: 5%;
-
+  display: flex;
+  justify-content: flex-end;
 }
 
 
 .coverImage {
-
   width: 100%;
   height: 100%;
   position: absolute;
   overflow: hidden;
   top: 0;
   left: 0;
-  /* background:red; */
   z-index: 0;
   transform: skewY(-2.2deg);
   transform-origin: 0 0;
-
-  /*chrome antialias fix */
-  -webkit-backface-visibility: hidden;
-
 }
 
 .coverImage img {
   width: 100%;
   height: 100%;
-
 }
 
 .details {
-  padding: 13rem 0 0 14rem;
-  height: 14rem;
   text-align: center;
+  display: flex;
+  width: 70%;
+  align-items: end;
 }
 
 .title1 {
   color: #C7C1BA;
   font-size: 2.2rem;
-  /* margin: 2.5rem 0 0.5rem 0; */
-  
   margin: 1rem;
   margin-left: 0;
   margin-right: 0;
@@ -108,7 +100,7 @@ span {
 
 
 .title2 {
-  height: 40%;
+  height: 100%;
   width: 100%;
   position: relative;
   display: flex;
@@ -131,27 +123,18 @@ span {
 
 .vote {
   width: 30%;
-  /* display: flex; */
-  /* justify-content: space-evenly; */
 }
-.votingResult {
-  width: 50%;
-  height: 50%;
-  font-size: 5rem;
-}
-.voteAvarage {
-  position: relative;
-  padding: 0;
-  font-size: 3rem;
-}
+
+
 
 .voteAvarageText{
   color: teal;
-  /* background-color: red; */
-  position: absolute;
-  top: 68%;
-  left: 91%;
+  position: relative;
   z-index: 9999;
+  font-size: 1.5rem;
+  font-weight: 600;
+  display: flex;
+  justify-content: space-evenly;
 }
 
 /* .vote:before {
@@ -165,25 +148,23 @@ span {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-evenly;
-  /* bottom: 0px; */
-  height: 200px;
+  justify-content: center;
+  height: 50%;
   font-size: 1rem;
-  /* line-height: 1rem; */
   color: white;
-
+  width: 100%;
+  align-items: center;
 }
 
 .column1 {
   z-index: 0;
-  margin-top: 7.25rem;
-  padding-left: 4%;
-  width: 25%;
-  float: left;
+  width: 30%;
   text-align: center;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
+  margin-top: 5%;
+  margin-right: 5%;
 }
 
 .tag {
@@ -205,14 +186,13 @@ span {
 }
 
 .column2 {
-  padding-left: 2.5rem;
-  /* padding-top: 0.5rem; */
-  margin-left: 1rem;
-  width: 80%;
-  float: left;
+  width: 65%;
   font-size: 1.2rem;
   line-height: 2rem;
-  height: 10rem;
+  height: 70%;
+  text-overflow: ellipsis;
+  overflow-y: scroll;
+  margin-bottom: 10%;
 }
 
 
@@ -227,8 +207,8 @@ span {
 
 .cover {
   position: absolute;
-  top: 14rem;
-  left: 1.5rem;
+  top: 90%;
+  left: 15%;
   z-index: 1;
   width: 100%;
   height: 100%;
@@ -247,12 +227,9 @@ span {
   height: 50%;
   position: absolute;
   z-index: 1;
-  top: 18rem;
-  left: 2.8rem;
-  /* box-shadow: none !important; */
-  /* display: none; */
+  top: 115%;
+  left: 25%;
   opacity: 0;
-  /* visibility: hidden; */
 }
 
 img {
@@ -261,18 +238,13 @@ img {
 
 .mediaLink:hover .cover {
   opacity: 0.5;
-  /* display: block; */
-  /* opacity: 1; */
+
 }
 
 .mediaLink:hover .img3 {
   opacity: 1;
-  /* display: block; */
 }
 
-.mediaLink:hover {
-  /* box-shadow: inset 0 0 300px red !important;  */
-}
 
 /*star rating stuff via: https://codepen.io/jamesbarnett/pen/vlpkh/*/
 
