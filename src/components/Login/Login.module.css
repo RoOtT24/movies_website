@@ -1,3 +1,10 @@
+.login {
+width: 60%;
+margin-top: 3rem;
+margin-bottom: 3rem;
+}
+
+
 .imgReg {
     width: 5rem;
     height: 5rem;  
@@ -21,4 +28,23 @@ form div input {
 #btn:hover {
     background-color: #fffdef !important;
     color: #25745c !important;
+}
+
+@media screen and (max-width: 600px) {
+    .imgReg {
+        width: 2rem;
+        height: 2rem;  
+    }
+
+    form div input {
+        font-size: 10px;
+    }
+
+    .login {
+        width: 80%;
+    }
+
+    #btn {
+        margin-bottom: 1rem !important;
+    }
 }

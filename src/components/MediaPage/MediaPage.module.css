@@ -73,6 +73,22 @@
   align-items: end;
 }
 
+.details1 {
+  width: 75%;
+  /* margin-bottom: 1rem; */
+}
+
+.details2 {
+  /* 'w-25 bg-dark z-3 mb-5 text-white position-relative p-1' */
+  width: 25%;
+  color: white;
+  position: relative;
+  padding: 0.5rem 0;
+  border-radius: 10%;
+  background-color: white;
+  margin-bottom: 1rem;
+}
+
 .title1 {
   color: #C7C1BA;
   font-size: 2.2rem;
@@ -105,8 +121,6 @@ span {
   position: relative;
   display: flex;
   flex-direction: column;
-
-
   align-items: center;
 }
 
@@ -122,7 +136,8 @@ span {
 
 
 .vote {
-  width: 30%;
+  width: 100%;
+  margin-bottom: 0.5rem;
 }
 
 
@@ -136,6 +151,7 @@ span {
   display: flex;
   justify-content: space-evenly;
 }
+
 
 /* .vote:before {
     content: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/icon_like.png");
@@ -190,7 +206,6 @@ span {
   font-size: 1.2rem;
   line-height: 2rem;
   height: 70%;
-  text-overflow: ellipsis;
   overflow-y: scroll;
   margin-bottom: 10%;
 }
@@ -274,88 +289,74 @@ fieldset, label {
   width: 100%;
   height: 100%;
   position: absolute;
-  /* display: none; */
 }
-
 
 .rating input {
   display: none;
 }
 
-.rating label:before {
-  margin: 0.5rem;
-  font-size: 0.8em;
-  font-family: FontAwesome;
-  content: "\f005";
-
-}
-
-.star {
-  /* content: "\f089"; */
-  /* position: absolute; */
-  margin-top: 1rem;
-}
-
-label {
+label { /* the star */
   color: #ddd;
-  /* float: right;  */
 }
 
-/***** CSS Magic to Highlight Stars on Hover *****/
-
-
-.link[data-tooltip] {
-  position: relative;
+@media screen and (max-width: 900px) {
+  .container {
+    width: 80%;
+  }
 }
 
-.link[data-tooltip]::before,
-.link[data-tooltip]::after {
-  position: absolute;
-  display: none;
-  opacity: 0.85;
+@media screen and (max-width: 600px) {
+  .title1 {
+    font-size: 1.5rem;
+    line-height: 1rem;
+    margin: .15rem;
+  }
+  .title2_text {
+    font-size: 0.8rem;
+  }
+  p {
+    font-size: 10px;
+  }
+  .voteAvarageText {
+    font-size: 0.8rem;
+    font-weight: 100;
+  }
+
+  .i {
+    margin: 5px 0px;
+    padding-right: 10px;
+  }
+  .column2 {
+    margin-bottom: 20%;
+  }
+
+  .column1 {
+
+  }
+
+  .tag {
+    font-size: 0.5rem;
+    padding: 0px 2px;
+  }
+
 }
 
-.link[data-tooltip]::before {
-  /*
-   * using data-tooltip instead of title so we 
-   * don't have the real tooltip overlapping
-   */
-  content: attr(data-tooltip);
-  background: #000;
-  color: #fff;
-  font-size: 13px;
-  padding: 5px;
-  border-radius: 5px;
-  /* we don't want the text to wrap */
-  white-space: nowrap;
-  text-decoration: none;
-}
-
-.link[data-tooltip]::after {
-  width: 0;
-  height: 0;
-  border: 6px solid transparent;
-  content: '';
-}
-
-.link[data-tooltip]:hover::before,
-.link[data-tooltip]:hover::after {
-  display: block;
-}
-
-/** positioning **/
-
-/* top tooltip */
-.link[data-tooltip][data-placement="top"]::before {
-  bottom: 100%;
-  left: 0;
-  margin-bottom: 40px;
-}
-
-.link[data-tooltip][data-placement="top"]::after {
-  border-top-color: #000;
-  border-bottom: none;
-  bottom: 50px;
-  left: 20px;
-  margin-bottom: 4px;
+@media screen and (max-width: 400px) {
+  .tag {
+    font-size: 0.4rem;
+    padding: 0px 0px;
+  }
+  .title1 {
+    font-size: 1rem;
+  }
+  .title2_text {
+    font-size: 0.6rem;
+  }
+  p {
+    font-size: 10px;
+  }
+  .voteAvarageText {
+    font-size: 0.6rem;
+    font-weight: 100;
+  }
 }

@@ -61,8 +61,6 @@ export const MediaPage = () => {
         <Link onClick={onClick} className={styles.mediaLink}>
           <div className={styles.img1Icon}>
             <div className={styles.icon}>
-              {/* <i className="fa-light fa-circle-play fa-lg" /> */}
-
               <img
                 src="/assets/img/play.png"
                 alt="media"
@@ -84,7 +82,7 @@ export const MediaPage = () => {
             />
           </div>
           <div className={styles.details}>
-            <div className='w-75 mb-3'>
+            <div className={styles.details1}>
               <div className={styles.title1}>
                 {media?.original_title
                   ? media.original_title
@@ -98,18 +96,18 @@ export const MediaPage = () => {
                 </div>
               </div>
             </div> {/* end details 1 */}
-           <div className='w-25 bg-dark z-3 mb-5 text-white position-relative p-1'><span className={styles.voteAvarageText}>
+           <div className={styles.details2}><span className={styles.voteAvarageText}>
                   {parseFloat(parseInt(media.vote_average * 100, 10)) / 10}%
-                <i className="fa-solid fa-star" /></span></div> {/* end details 2 */}
+                <i className={`fa-solid fa-star ${styles.i}`} /></span></div> {/* end details 2 */}
           </div>
           {/* end details */}
         </div>
         {/* end hero */}
         <div className={styles.description}>
           <div className={styles.column1}>
-            {media?.genres?.map((type, index) => (
+            {media?.genres?.map((gen, index) => (
               <span key={index} className={styles.tag}>
-                {media_type}
+                {gen.name}
               </span>
             ))}
           </div>

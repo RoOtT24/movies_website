@@ -66,6 +66,10 @@
     .footerDark {
       height: max-content;
     }
+    h3 {
+      padding-top: 1.5rem;
+    }
+
   }
   
   .footerDark .item #social > a {

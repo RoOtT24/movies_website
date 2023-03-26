@@ -80,7 +80,7 @@ export const Login = ({ setToken }) => {
   };
 
   return (
-    <div className="container mt-5 w-50 mb-5">
+    <div className={`container ${styles.login}`}>
       <form
         onSubmit={onSubmit}
         className="card d-flex flex-column align-items-center bg-secondary"

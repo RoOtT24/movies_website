@@ -5,7 +5,7 @@ import cookie from "react-cookies";
 
 
 const Navbar = ({ token, setToken, setLoading }) => {
-  const [pressed, setPressed] = useState(true)
+  const [pressed, setPressed] = useState(false)
   function logout() {
     cookie.remove("guest_session_id");
     setToken(null);
@@ -89,7 +89,7 @@ const Navbar = ({ token, setToken, setLoading }) => {
                   <a
                     id={styles.Link}
                     onClick={logout}
-                    className="nav-link"
+                    className={styles.logout}
                     href="/"
                     name={"nav-item"}
                   >
@@ -98,16 +98,17 @@ const Navbar = ({ token, setToken, setLoading }) => {
                 </>
               ) : (
                 <>
-                  <Link id={styles.Link} to="/register">
-                    Register
-                  </Link>
+                 
                   <Link
+                  onClick={linkStyle}
                     id={styles.Link}
                     to="/login"
                     className={styles.active}
                     name={"nav-item"}
                   >
                     Login
+                  </Link> <Link onClick={linkStyle} id={styles.Link} to="/register" name={"nav-item"} >
+                    Register
                   </Link>
                 </>
               )}

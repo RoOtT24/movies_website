@@ -41,7 +41,7 @@ nav {
     font-size: 17px;
 }
 
-.topnav #Link:last-of-type {
+.logout {
     color: red !important;
 }
 
@@ -64,6 +64,9 @@ nav {
 }
 
 @media screen and (max-width: 900px) {
+    .register{
+        margin-top: 3rem;
+    }
     nav {
         height: 5vh;
     }
