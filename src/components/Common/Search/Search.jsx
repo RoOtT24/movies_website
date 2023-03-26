@@ -21,7 +21,7 @@ const Search = ({inputs, setResults, text}) => {
   return (
     <div className={styles.search}>
         <i className="fa-solid fa-magnifying-glass z-3 position-absolute" style={{top:5+'px', left:5+'px'}}></i>
-        <input type="search" onChange={onChange} placeholder={text}/>
+        <input type="search" onChange={onChange} placeholder='Search'/>
     </div>
   )
 }

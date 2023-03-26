@@ -1,10 +1,25 @@
 .search{
     position: absolute;
     top: 1rem;
-    left: 42%;
+    left: 36%;
     z-index: 2;
 }
 
 .search input {
     padding-left: 2rem;
+}
+
+
+@media screen and (max-width: 600px) {
+.search input {
+    width: 60%;
+    height: 20%;
+    padding-left: 16px;
+}    
+.search {
+    top: 1px;
+}
+body {
+    font-size: 10px;
+}
 }
