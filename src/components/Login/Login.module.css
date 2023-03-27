@@ -1,9 +1,8 @@
 .login {
-width: 60%;
+width: 50%;
 margin-top: 3rem;
 margin-bottom: 3rem;
 }
-
 
 .imgReg {
     width: 5rem;
@@ -11,6 +10,14 @@ margin-bottom: 3rem;
     margin-top: 1rem;
 }
 
+.forget p{
+    color: lightskyblue;
+    text-shadow: 2px 2px 3px #000;
+}
+
+.forget p:hover{
+    color: lightcoral;
+}
 
 form div input {
     background-color: #aeccc6 !important;

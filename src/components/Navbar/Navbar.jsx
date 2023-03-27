@@ -5,7 +5,7 @@ import cookie from "react-cookies";
 
 
 const Navbar = ({ token, setToken, setLoading }) => {
-  const [pressed, setPressed] = useState(false)
+  const [pressed, setPressed] = useState(window.innerWidth>=600?false:true)
   function logout() {
     cookie.remove("guest_session_id");
     setToken(null);
@@ -27,13 +27,14 @@ const Navbar = ({ token, setToken, setLoading }) => {
 
   const linkStyle = (e) => {
     const arr = document.getElementsByName("nav-item");
-    for (let i = 0; i < arr.length; ++i) {
+    for (let i = 0; i < arr.length-1; ++i) {
       arr[i].className = "";
     }
     e.target.className = styles.active;
   };
 
   useEffect(() => {
+    console.log(window.innerWidth)
    myFunction()
   }, []);
   return (

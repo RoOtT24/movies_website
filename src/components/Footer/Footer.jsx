@@ -25,12 +25,12 @@ const Footer = () => {
           </ul>
         </div>
         <div className="col-md-6 item text">
-          <h3>Company Name</h3>
+          <h3>Pal Best</h3>
           <p>Praesent sed lobortis mi. Suspendisse vel placerat ligula. Vivamus ac sem lacus. Ut vehicula rhoncus elementum. Etiam quis tristique lectus. Aliquam in arcu eget velit pulvinar dictum vel in jushref.</p>
         </div>
         <div className="col item" id={styles.social}><a href="#"><i className="icon ion-social-facebook" /></a><a href="#"><i className="icon ion-social-twitter" /></a><a href="#"><i className="icon ion-social-snapchat" /></a><a href="#"><i className="icon ion-social-instagram" /></a></div>
       </div>
-      <p className={styles.copyright}>Company Name © 2018</p>
+      <p className={styles.copyright}>© Pal Best 2023</p>
     </div>
   </footer>
 </div>

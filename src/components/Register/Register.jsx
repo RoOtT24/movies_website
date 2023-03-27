@@ -1,157 +1,171 @@
-import axios from 'axios'
-import Joi from 'joi'
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { toast } from 'react-toastify'
-import styles from './Register.module.css'
+import axios from "axios";
+import Joi from "joi";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import styles from "../Login/Login.module.css";
 
 export const Register = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [inputs, setInputs] = useState({
-    name:'',
-    email:'',
-    password:'',
-    cPassword:'',
-  })
-  
-  const [errors, setErrors] = useState({ // will have values initially to disable submit button
-    name:'',
-    email:'',
-    password:'',
-    cPassword:'',
-  })
+    name: "",
+    email: "",
+    password: "",
+    cPassword: "",
+  });
 
-  const onSubmit = async (e)=>{
+  const [error, setError] = useState({
+    // will have values initially to disable submit button
+    name: "",
+    email: "",
+    password: "",
+    cPassword: "",
+  });
+
+  const onSubmit = async (e) => {
     /*
       inputs: ActionEvent
       function: Sends the inputs to the backend and raise errors if there are any, if not switch to login
       output: none
       */
-    e.preventDefault()
-    const {data} = await axios.post('https://lazy-blue-sockeye-gear.cyclic.app/api/v1/auth/signup',inputs)
-    if(data.message === 'success'){
-      navigate('/login')
-      toast.success('Confirm Your Email Then Login');
-    }
-    else{
+    e.preventDefault();
+    const { data } = await axios.post(
+      "https://lazy-blue-sockeye-gear.cyclic.app/api/v1/auth/signup",
+      inputs
+    );
+    if (data.message === "success") {
+      navigate("/login");
+      toast.success("Confirm Your Email Then Login");
+    } else {
       // handle errors
-      toast.error('There is an error in your data!, try again');
-      // const value = data.err[0][0].message ;
-      // setErrors({...errors , [data.err[0][0].path[0]]:value});
+      toast.error("There is an error in your data, try again!");
     }
-  }
-///////////////////////////////////////
+  };
+  ///////////////////////////////////////
 
-  const validationSchema = ()=> {
+  const validationSchema = () => {
     /*
       inputs: none
       function: creates a validation schema using JOI
       output: The schema of validation
       */
     return Joi.object({
-      name: Joi.string()
-          .alphanum()
-          .min(3)
-          .max(30)
-          .required(),
-  
-      password: Joi.string()
-          .min(3).required(),
-  
-      cPassword: Joi.any().valid(inputs.password).required().messages({
-        "any.only":"Does not match password"
-        }).required(),
-  
+      name: Joi.string().alphanum().min(3).max(30).required(),
+
+      password: Joi.string().min(8).required(),
+
+      cPassword: Joi.any()
+        .valid(inputs.password)
+        .required()
+        .messages({
+          "any.only": "Does not match password",
+        })
+        .required(),
+
       email: Joi.string()
-          .email({ minDomainSegments: 2, tlds: { allow: ['com', 'edu'] } }).required()
-  })
-  
-  }
-    const validateInput = (name, value)=>{
-      /*
+        .email({ minDomainSegments: 2, tlds: { allow: ["com", "edu"] } })
+        .required(),
+    });
+  };
+  const validateInput = (name, value) => {
+    /*
       inputs: (name) of the input field, value on it
       function: validate tha value based on validation schema
       output: The validation errors if there is any
       */
-      return validationSchema().extract(name).validate(value);
-    }
-///////////////////////////////////////
-  const onChange = (e)=>{
+    return validationSchema().extract(name).validate(value);
+  };
+  ///////////////////////////////////////
+  const onChange = (e) => {
     /*
       inputs: ActionEvent
       function: set the values in the inputs and raise the errors if there is any
       output: none
       */
-    const {name, value} = e.target;
-    setInputs({...inputs , [name]:value});
+    const { name, value } = e.target;
+    setInputs({ ...inputs, [name]: value });
     const validation = validateInput(name, value);
-    if(validation.error){
-      setErrors({...errors, [name]: validation.error})
+    if (validation.error) {
+      setError({ ...error, [name]: validation.error });
+    } else {
+      let errs = { ...error };
+      delete errs[name];
+      setError({ ...errs });
     }
-    else {
-      let errs = {...errors};
-      delete errs[name]
-      setErrors({...errs})
-    }
-  }
-///////////////////////////////////////
+  };
+  ///////////////////////////////////////
 
   return (
-    <form onSubmit={onSubmit} className="container text-center mt-5 w-50 mb-5">
-      
-      <div className="card px-5 py-3 bg-secondary ">
-      <div className="d-flex justify-content-center mb-3">
-        <img className={styles.imgReg} src="/assets/img/login.png" alt="account pic" />
+    <div className={`container ${styles.login}`}>
+      <form
+        onSubmit={onSubmit}
+        className="card d-flex flex-column align-items-center bg-secondary"
+        style={{ height: "max-content" }}
+      >
+        <div className="d-flex justify-content-center mb-3">
+          <img
+            className={styles.imgReg}
+            src="/assets/img/login.png"
+            alt="account pic"
+          />
         </div>
-      
-      <div className="form-group my-3">
-        
-        <input
-          type="text"
-          className="form-control"
-          id="name"
-          name="name"
-          placeholder="Enter Your Name"
-          onChange={onChange}
-        />
+        <div className="form-group d-flex justify-content-center w-100 flex-column flex-wrap align-items-center">
+          <input
+            onChange={onChange}
+            type="email"
+            className="form-control w-75 my-3"
+            id="email"
+            placeholder="Enter email"
+          />
+          {error["email"]?.length > 0 ? (
+            <div className="alert alert-danger">{error["email"]}</div>
+          ) : null}
         </div>
-      <div className="form-group my-3">
-        <input
-          type="email"
-          className="form-control"
-          id="email"
-          name="email"
-          placeholder="Enter email"
-          onChange={onChange}
-        />
+        <div className="form-group d-flex justify-content-center w-100 flex-column flex-wrap align-items-center">
+          <input
+            onChange={onChange}
+            type="text"
+            className="form-control w-75 my-3"
+            id="name"
+            placeholder="Enter Your Name"
+          />
+          {error["name"]?.length > 0 ? (
+            <div className="alert alert-danger">{error["name"]}</div>
+          ) : null}
+        </div>
+        <div className="form-group d-flex justify-content-center w-100 flex-column flex-wrap align-items-center">
+          <input
+            onChange={onChange}
+            type="password"
+            className="form-control w-75 my-3"
+            id="password"
+            placeholder="Password"
+          />
+          {error["password"]?.length > 0 ? (
+            <div className="alert alert-danger">{error["password"]}</div>
+          ) : null}
+        </div>
+        <div className="form-group d-flex justify-content-center w-100 flex-column flex-wrap align-items-center">
+          <input
+            onChange={onChange}
+            type="password"
+            className="form-control w-75 my-3"
+            id="cPassword"
+            placeholder="cPassword"
+          />
+          {error["cPassword"]?.length > 0 ? (
+            <div className="alert alert-danger">{error["cPassword"]}</div>
+          ) : null}
+        </div>
 
-      </div>
-      <div className="form-group my-3">
-        <input
-          type="password"
-          className="form-control"
-          id="password"
-          name="password"
-          placeholder="Enter Password"
-          onChange={onChange}
-        />
-      </div>
-      
-      <div className="form-group my-3">
-        <input
-          type="password"
-          className="form-control"
-          id="cPassword"
-          name="cPassword"
-          placeholder="Confirm Your Password"
-          onChange={onChange}
-        />
-      </div>
-
-    <div>
-      <input type="submit" id={styles.btn} className={Object.keys(errors).length>0? "btn btn-primary disabled w-25 mt-3" : "btn btn-primary mt-3 w-25" } />
-      </div>
-      </div>
-    </form>
+        <button
+          type="submit"
+          id={styles.btn}
+          className="btn btn-primary mt-3 mb-5"
+        >
+          Submit
+        </button>
+      </form>
+    </div>
   );
-}
+};

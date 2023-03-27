@@ -16,6 +16,8 @@ import cookie from "react-cookies";
 import { UnProtectedRoutes } from './components/UnProtectedRoutes/UnProtectedRoutes';
 import Footer from './components/Footer/Footer';
 import PageNotfound from './components/PageNotFound/PageNotfound';
+import ForgetPassword from './components/ForgetPassword.jsx/ForgetPassword';
+import ResetPassword from './components/ResetPassword/ResetPassword';
 
 
 
@@ -48,6 +50,8 @@ function App() {
           {/* Un Protected Routes */}
             <Route element={<UnProtectedRoutes/>}>
             <Route path="/register" element={<Register/>}></Route>
+            <Route path="/forgetPassword" element={<ForgetPassword/>}></Route>
+            <Route path="/resetPassword" element={<ResetPassword/>}></Route>
             <Route path="/login" element={ <Login token={token} setToken={setToken}/> }></Route>
             </Route>
 
