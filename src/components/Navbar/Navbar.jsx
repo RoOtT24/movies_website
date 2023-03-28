@@ -27,8 +27,9 @@ const Navbar = ({ token, setToken, setLoading }) => {
 
   const linkStyle = (e) => {
     const arr = document.getElementsByName("nav-item");
-    for (let i = 0; i < arr.length-1; ++i) {
-      arr[i].className = "";
+    for (let i = 0; i < arr.length; ++i) {
+      if(arr[i].innerHTML.toLowerCase() !== 'logout')
+       arr[i].className = "";
     }
     e.target.className = styles.active;
   };
