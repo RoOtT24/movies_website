@@ -49,7 +49,7 @@ export const Register = () => {
       function: creates a validation schema using JOI
       output: The schema of validation
       */
-    return Joi.object({
+    const schema = Joi.object({
       name: Joi.string().alphanum().min(3).max(30).required(),
 
       password: Joi.string().min(8).required(),
@@ -66,6 +66,7 @@ export const Register = () => {
         .email({ minDomainSegments: 2, tlds: { allow: ["com", "edu"] } })
         .required(),
     });
+    return schema;
   };
   const validateInput = (name, value) => {
     /*
@@ -73,7 +74,8 @@ export const Register = () => {
       function: validate tha value based on validation schema
       output: The validation errors if there is any
       */
-    return validationSchema().extract(name).validate(value);
+    const schema = validationSchema();    
+    return schema.extract(name).validate(value);
   };
   ///////////////////////////////////////
   const onChange = (e) => {
@@ -82,14 +84,15 @@ export const Register = () => {
       function: set the values in the inputs and raise the errors if there is any
       output: none
       */
-    const { name, value } = e.target;
-    setInputs({ ...inputs, [name]: value });
-    const validation = validateInput(name, value);
+    const { id, value } = e.target;
+    console.log("value = ",value)
+    setInputs({ ...inputs, [id]: value });
+    const validation = validateInput(id, value);
     if (validation.error) {
-      setError({ ...error, [name]: validation.error });
+      setError({ ...error, [id]: validation.error });
     } else {
       let errs = { ...error };
-      delete errs[name];
+      delete errs[id];
       setError({ ...errs });
     }
   };
