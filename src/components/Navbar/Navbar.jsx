@@ -25,6 +25,15 @@ const Navbar = ({ token, setToken, setLoading }) => {
     
   }
 
+  const logo = () => {
+    const arr = document.getElementsByName("nav-item");
+    for (let i = 1; i < arr.length; ++i) {
+      if(arr[i].innerHTML.toLowerCase() !== 'logout')
+       arr[i].className = "";
+    }
+    arr[0].className = styles.active;
+  }
+
   const linkStyle = (e) => {
     const arr = document.getElementsByName("nav-item");
     for (let i = 0; i < arr.length; ++i) {
@@ -43,7 +52,7 @@ const Navbar = ({ token, setToken, setLoading }) => {
       <div className="container">
         <div className={styles.flex}>
           <div className={styles.logoDiv}>
-            <Link className="navbar-brand" to="/">
+            <Link className="navbar-brand" to="/" onClick={logo}>
               <img
                 className={styles.logo}
                 src="/assets/img/cinema.png"

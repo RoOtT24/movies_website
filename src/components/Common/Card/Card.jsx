@@ -27,13 +27,13 @@ export const Card = ({ media_type, id }) => {
     <div className={styles.card}>
       <Link onClick={onClick}>
         <img
-          src={`https://image.tmdb.org/t/p/w1280/${media?.poster_path}`}
-          alt={media?.title}
+          src={media?.poster_path?`https://image.tmdb.org/t/p/w1280/${media.poster_path}`:'/assets/img/movie1.jpg'}
+          alt={media?.title? media.title : 'Movie Name'}
           className={styles.img1}
         />
         <img
-          src={`https://image.tmdb.org/t/p/w1280/${media?.backdrop_path}`}
-          alt={media?.title}
+          src={media?.backdrop_path?`https://image.tmdb.org/t/p/w1280/${media.backdrop_path}`:'/assets/img/movie2.jpg'}
+          alt={media?.title? media.title : 'Movie Name'}
           className={styles.img2}
         />
 
@@ -49,7 +49,7 @@ export const Card = ({ media_type, id }) => {
       <Link onClick={onClick}>
         <div className={styles.views}>
           {" "}
-          {media?.vote_average} <i className="fa-solid fa-star" />{" "}
+          {media?.vote_average?media.vote_average:'?'} <i className="fa-solid fa-star" />{" "}
         </div>
       </Link>
     </div>

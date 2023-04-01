@@ -67,7 +67,7 @@ export const MediaPage = () => {
                 className={styles.img3}
               />
               <img
-                src={`https://image.tmdb.org/t/p/w1280/${media?.poster_path}`}
+                src={media?.poster_path?`https://image.tmdb.org/t/p/w1280/${media?.poster_path}`:'/assets/img/movie1.jpg'}
                 alt="media"
                 className={styles.cover}
               />
@@ -77,7 +77,7 @@ export const MediaPage = () => {
         <div className={styles.hero}>
           <div className={styles.coverImage}>
             <img
-              src={`https://image.tmdb.org/t/p/w1280/${media?.backdrop_path}`}
+              src={media.backdrop_path?`https://image.tmdb.org/t/p/w1280/${media?.backdrop_path}`:'/assets/img/movie2.jpg'}
               alt="cover"
             />
           </div>
@@ -86,7 +86,7 @@ export const MediaPage = () => {
               <div className={styles.title1}>
                 {media?.original_title
                   ? media.original_title
-                  : media.original_name}
+                  : media.original_name? media.original_name : 'Movie Name'}
               </div>
               <div className={styles.title2}>
                 <div className={styles.title2_text}>{media?.tagline}</div>
@@ -97,7 +97,7 @@ export const MediaPage = () => {
               </div>
             </div> {/* end details 1 */}
            <div className={styles.details2}><span className={styles.voteAvarageText}>
-                  {parseFloat(parseInt(media.vote_average * 100, 10)) / 10}%
+                  {media.vote_average? parseFloat(parseInt(media.vote_average * 100, 10)) / 10 : '? '}%
                 <i className={`fa-solid fa-star ${styles.i}`} /></span></div> {/* end details 2 */}
           </div>
           {/* end details */}
@@ -114,7 +114,7 @@ export const MediaPage = () => {
           {/* end column1 */}
             <div className={styles.column2}>
               <p>
-                {media?.overview}
+                {media?.overview? media.overview : 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat, expedita iste dicta eos atque adipisci laborum quos, dolorum illum soluta accusantium id a consequuntur doloribus velit ea quasi, dolorem assumenda.'}
               </p>
           </div>{/* end column2 */}
         </div>
